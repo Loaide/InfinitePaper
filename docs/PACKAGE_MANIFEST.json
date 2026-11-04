@@ -1,0 +1,15 @@
+{
+  "project": "InfinitePaper",
+  "documentation_version": "0.1.0",
+  "last_updated": "2026-11-04",
+  "files": [
+    "README.md",
+    "app/.gitkeep",
+    "docs/ARCHITECTURE.md",
+    "docs/BENCHMARKS.md",
+    "docs/CURRENT_STATE.md",
+    "docs/DECISIONS.md",
+    "docs/ROADMAP.md",
+    "docs/SPECIFICATION.md"
+  ]
+}
