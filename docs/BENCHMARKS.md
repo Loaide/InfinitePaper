@@ -2,7 +2,7 @@
 
 **Document ID:** IP-BENCH-001  
 **Version:** 0.1.0  
-**Status:** Test plan; no measurements recorded  
+**Status:** Test plan; graphics initialization observation recorded; performance benchmarks pending 
 **Last updated:** 2026-11-04
 
 ## 1. Purpose

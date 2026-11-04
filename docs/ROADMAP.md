@@ -2,7 +2,7 @@
 
 **Document ID:** IP-ROADMAP-001  
 **Version:** 0.1.0  
-**Status:** Planned; no milestone completed  
+**Status:** M0 in progress; no milestone completed  
 **Last updated:** 2026-11-04
 
 ## 1. Roadmap rules
