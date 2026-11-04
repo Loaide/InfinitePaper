@@ -137,6 +137,21 @@ OpenGL ES 3.0 offers a relatively direct path to a first Android GPU renderer an
 
 Use OpenGL ES 3.0 for the first renderer prototype, but keep camera, document, geometry preparation, and rendering contracts independent from the graphics API. Re-evaluate before the renderer becomes difficult to replace.
 
+### Runtime evidence — 2026-11-04
+
+The initial GLSurfaceView prototype successfully initialized on the Samsung Galaxy Tab S10 FE+.
+
+The runtime reported:
+- GL vendor: Samsung Electronics Co., Ltd.
+- GL renderer: ANGLE ((Samsung Xclipse 540) on Vulkan 1.3.279)
+- GLES version: 3.2
+- Driver version: 24.1.296
+- ANGLE Git hash: bfdb0b875536
+
+ANGLE is confirmed active for this tested configuration. This satisfies the initial graphics capability discovery task but does not resolve the backend performance comparison.
+
+ADR-006 remains provisional until a meaningful stroke renderer and reproducible performance measurements exist.
+
 ### Revisit when
 
 - The target device's actual GLES version, renderer, and driver are logged.
@@ -275,6 +290,38 @@ Start with simple, testable in-memory structures and a clear persistence abstrac
 - Initial code is easier to inspect and debug.
 - The document model must not depend on the first memory layout.
 - Performance work is evidence-driven.
+
+## ADR-013 — Provisional Android API 28 development baseline
+
+**Status:** Provisional
+**Date:** 2026-11-04
+
+### Context
+
+The first Android Studio project requires a minimum SDK setting. The project's final distribution target and compatibility requirements have not yet been established.
+
+### Decision
+
+Use Android 9 (API 28) as the provisional minimum SDK for the initial development project.
+
+The M0 renderer requests OpenGL ES 3.0 and declares it as a required feature. The application ID observed in the initial runtime logs is `com.example.infinitepainter`.
+
+### Rationale
+
+This configuration supports development and testing on the primary reference tablet without prematurely establishing the final compatibility policy.
+
+### Consequences
+
+- API 28 is a temporary development baseline, not a permanent product requirement.
+- GLES 3.0 is required by the current prototype configuration.
+- The application ID should be reviewed before publication.
+- The minimum SDK, GPU fallback policy, and distribution compatibility target remain open.
+
+### Revisit when
+
+- The target range of Android devices is defined.
+- A meaningful renderer prototype is available.
+- Compatibility testing identifies required API or graphics features.
 
 ---
 

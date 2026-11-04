@@ -125,7 +125,7 @@ Responsibilities:
 - Avoid losing objects that cross spatial boundaries.
 - Preserve a link to stable document ordering.
 
-Candidate structures include uniform spatial hashing, quadtree, R-tree, or a hybrid. Choose by workload benchmark, not preference alone.
+Candidate structures include quadtree, R-tree, or a hybrid. Choose by workload benchmark, not preference alone.
 
 Important distinction: spatial organization and temporal drawing order are separate. A spatial query can identify candidates, but the final visible list must preserve required compositing order.
 
@@ -144,7 +144,7 @@ Geometry preparation should be separable from GPU submission. Background workers
 
 ### 3.8 Graphics backend
 
-Initial candidate: OpenGL ES 3.0.
+Initial implementation: OpenGL ES 3.0-compatible clear-screen prototype using Android GLSurfaceView. The reference tablet reports OpenGL ES 3.2 through ANGLE backed by Vulkan 1.3.279. This is a provisional rendering approach; no stroke geometry or production rendering pipeline has been implemented.
 
 Responsibilities:
 
@@ -346,6 +346,26 @@ Initial prototype: OpenGL ES 3.0, with an explicit review before renderer comple
 ANGLE may translate OpenGL ES calls to another backend such as Vulkan, but its presence and use are device/runtime dependent. It is not the GPU. Do not make ANGLE a correctness dependency.
 
 Vulkan should be evaluated if the prototype reveals a concrete need for lower-level resource control, explicit synchronization, or performance. Its added complexity is not automatically justified for a 2D canvas.
+
+### 10.1 M0 graphics implementation observation
+
+The initial Android implementation contains three principal classes:
+
+- `MainActivity`: owns the Activity lifecycle, checks reported GLES 3.0 support, creates the canvas view, and forwards pause/resume.
+- `CanvasView`: creates a GLSurfaceView, requests a GLES 3.0 context, installs the renderer, and uses render-on-demand mode.
+- `CanvasRenderer`: handles surface creation, viewport changes, framebuffer clearing, and graphics capability logging.
+
+The prototype uses GLSurfaceView's dedicated rendering thread. OpenGL calls are confined to renderer callbacks.
+
+Observed on 2026-11-04:
+- GL vendor: Samsung Electronics Co., Ltd.
+- Renderer: ANGLE ((Samsung Xclipse 540) on Vulkan 1.3.279)
+- GLES version: 3.2
+- Viewport: 2880 x 1800
+
+The rendering context initialized successfully. Surface recreation, context loss, frame timing, and input-to-render latency remain unverified.
+
+The graphics backend must remain separate from the future pure Kotlin camera, document, and geometry modules.
 
 ## 11. Key architecture risks
 

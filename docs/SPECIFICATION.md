@@ -75,7 +75,11 @@ RAM Plus must not be treated as physical RAM. Android, system services, GPU allo
 
 The Tab S10 FE+ is the primary development target, not the only possible target. The project should avoid unnecessary dependence on Samsung-only APIs. Standard Android input and graphics APIs should be preferred where they meet the requirements.
 
-Minimum Android API level, supported GPU baseline, and fallback policy remain open until the project chooses its distribution target. A graphics feature requirement must be checked at runtime and, if relevant, declared in the manifest.
+The initial Android Studio project uses minimum SDK API 28 (Android 9) provisionally. This is a development configuration, not a finalized distribution compatibility policy.
+
+The M0 prototype requests OpenGL ES 3.0 and checks the device's reported support before initializing GLSurfaceView. On the reference tablet, the runtime reports OpenGL ES 3.2 through ANGLE on Vulkan 1.3.279.
+
+The minimum supported GPU baseline, fallback renderer policy, and final Android distribution target remain open. The current GLES 3.0 manifest requirement must be revisited before broad device distribution.
 
 ## 4. Interaction requirements
 
@@ -233,6 +237,20 @@ LOD and sub-pixel aggregation may be introduced after the basic renderer is corr
 ### 7.2 Graphics API
 
 OpenGL ES 3.0 is the initial prototype path, subject to a short architecture validation. Vulkan remains an alternative backend. ANGLE is an optional OpenGL ES translation layer whose availability and selected path must be verified on the target device. The renderer should keep document, camera, and geometry logic independent of a specific graphics API.
+
+### M0 runtime observation — 2026-11-04
+
+The reference tablet successfully initialized the GLES prototype and reported:
+
+- GL vendor: Samsung Electronics Co., Ltd.
+- GL renderer: ANGLE ((Samsung Xclipse 540) on Vulkan 1.3.279)
+- GL version: OpenGL ES 3.2
+- GL driver version: 24.1.296
+- GLSL version: OpenGL ES GLSL ES 3.20
+- ANGLE Git hash: bfdb0b875536
+- Rendering viewport: 2880 x 1800 pixels
+
+This confirms runtime graphics initialization and the selected ANGLE/Vulkan translation path for the tested configuration. It does not establish rendering throughput, latency, compatibility across devices, or a permanent graphics-backend choice.
 
 ## 8. Performance requirements
 

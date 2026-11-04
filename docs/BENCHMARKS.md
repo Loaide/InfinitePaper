@@ -24,11 +24,17 @@ A benchmark result without device, build, scene, and test conditions is not cons
 | Advertised resolution | 2880 × 1800 |
 | Advertised refresh capability | Up to 90 Hz |
 | Android version/build | NOT RECORDED |
-| App build/commit | NOT AVAILABLE |
-| GLES version | NOT QUERIED |
-| GL vendor/renderer strings | NOT QUERIED |
-| ANGLE status | NOT VERIFIED |
-| Vulkan support/driver | NOT QUERIED |
+| App build/commit | Local development build; commit not recorded |
+| Application ID | com.example.infinitepainter |
+| GLES version | OpenGL ES 3.2 |
+| GL vendor | Samsung Electronics Co., Ltd. |
+| GL renderer | ANGLE ((Samsung Xclipse 540) on Vulkan 1.3.279) |
+| GL driver version | 24.1.296 |
+| GLSL version | OpenGL ES GLSL ES 3.20 |
+| ANGLE status | Active in tested configuration |
+| ANGLE Git hash | bfdb0b875536 |
+| Vulkan support/driver | Vulkan 1.3.279 reported as ANGLE backend; native Vulkan capability not separately queried |
+| Observed viewport | 2880 x 1800 |
 | Thermal state | NOT RECORDED |
 
 Before formal performance runs, capture the actual runtime values. Do not infer ANGLE use from the presence of Vulkan support.
@@ -243,11 +249,36 @@ The earlier proposal's “90 FPS” and “p99 below 8.3 ms” were not equivale
 
 ## 8. Results log
 
-No measurements have been recorded yet.
+The first runtime graphics capability observation was recorded on 2026-11-04. No formal frame-time, GPU throughput, memory, or latency benchmarks have been completed.
 
 | Date | Commit | Test ID | Device/build | Result | Notes |
 |---|---|---|---|---|---|
 | — | — | — | — | NOT MEASURED | Baseline pending |
+
+### 2026-11-04 — M0 graphics initialization observation
+
+**Category:** Functional smoke test; not a performance benchmark.
+
+- Device: Samsung Galaxy Tab S10 FE+
+- Application ID: com.example.infinitepainter
+- Build: Local development build; Git commit not recorded
+- Test: Initialize GLSurfaceView, create a GLES 3.0 context, query graphics strings, and clear the framebuffer
+- GL vendor: Samsung Electronics Co., Ltd.
+- GL renderer: ANGLE ((Samsung Xclipse 540) on Vulkan 1.3.279)
+- GL version: OpenGL ES 3.2
+- Driver version: 24.1.296
+- GLSL version: OpenGL ES GLSL ES 3.20
+- ANGLE Git hash: bfdb0b875536
+- Observed viewport: 2880 x 1800
+- Result: Graphics context initialization confirmed by Logcat; user reports successful on-device execution
+- Frame timing: NOT MEASURED
+- GPU timing: NOT MEASURED
+- Active display refresh rate: NOT RECORDED
+- Android OS build: NOT RECORDED
+- Thermal state: NOT RECORDED
+- Context recreation: NOT TESTED
+
+This observation does not establish a 60 FPS or 90 FPS performance baseline. It confirms only the initial graphics capability and initialization path.
 
 ## 9. Result entry template
 

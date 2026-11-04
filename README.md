@@ -2,7 +2,7 @@
 
 > An Android-first, offline, vector-based infinite canvas for handwriting, sketching, annotation, and spatial thinking.
 
-**Project status:** Pre-implementation / Milestone 0  
+**Project status:** Milestone 0 in progress — Android shell and GPU clear-screen prototype implemented 
 **Documentation baseline:** 0.1.0  
 **Last updated:** 2026-11-04  
 **Primary reference device:** Samsung Galaxy Tab S10 FE+ (13.1-inch, Exynos 1580, Xclipse 540, 8 GB physical RAM, 4 GB RAM Plus configured)
@@ -32,16 +32,16 @@ The first engineering priority is the canvas engine. Product features such as la
 
 ## 3. Current project status
 
-The project is in pre-implementation planning. No production renderer, document model, or persistence system has been implemented yet.
+Milestone 0 is in progress. A native Android application and OpenGL ES clear-screen prototype have been implemented and tested on the reference tablet. Camera mathematics, the production stroke renderer, document model, and persistence remain unimplemented.
 
 | Area | Status |
 |---|---|
 | Product direction | Established |
 | Reference device | Established |
 | Initial architecture | Proposed; several decisions remain provisional |
-| Android project | Not created |
+| Android project | Created locally; clean GitHub checkout not yet verified |
 | Camera implementation | Not implemented |
-| GPU renderer | Not implemented |
+| GPU renderer | Clear-screen prototype working; stroke renderer not implemented |
 | Input pipeline | Not implemented |
 | Document model | Not implemented |
 | Persistence | Not implemented |
@@ -73,8 +73,8 @@ The initial performance objective is to make a simple and moderately complex sce
 | Main language | Kotlin | Approved |
 | Initial graphics prototype | OpenGL ES 3.0 | Provisional |
 | Future graphics option | Vulkan backend | Evaluation required |
-| ANGLE | Optional translation path to investigate | Unverified on target device |
-| Rendering host | Android `GLSurfaceView` or equivalent surface-based host | Provisional |
+| ANGLE | Confirmed active on reference tablet; Vulkan 1.3.279 backend | Observed |
+| Rendering host | Android `GLSurfaceView` | Implemented for M0 prototype |
 | UI | Native Android UI; keep UI separate from canvas renderer | Approved principle |
 | World coordinates | CPU-side `Double` | Approved principle |
 | GPU coordinates | Camera-relative `Float` | Approved principle |
@@ -82,7 +82,7 @@ The initial performance objective is to make a simple and moderately complex sce
 | Spatial index | Quadtree vs spatial hash to be benchmarked | Open |
 | Persistence format | Versioned local format; exact design open | Open |
 
-Do not assume ANGLE is enabled on the tablet. ANGLE is a graphics translation layer, not a GPU. Device support, selected driver path, and runtime configuration must be verified rather than inferred.
+The reference tablet's 2026-11-04 runtime log confirms ANGLE translating OpenGL ES 3.2 to Vulkan 1.3.279 on the Samsung Xclipse 540 GPU. This is an observation for the tested device and configuration, not a guarantee for other devices or a permanent graphics-backend decision.
 
 ## 6. Repository structure
 
@@ -99,7 +99,7 @@ InfinitePaper/
 └── app/
 ```
 
-The `app/` directory is a placeholder for the Android application module. It will be populated when the Android Studio project is created.
+The Android application was generated locally using Android Studio. The project currently uses Kotlin, a native Activity, and GLSurfaceView. The local application ID observed in Logcat is `com.example.infinitepainter`, and the provisional minimum SDK is API 28 (Android 9). The generated project has not yet been verified in a clean checkout from GitHub.
 
 ### Documentation authority
 

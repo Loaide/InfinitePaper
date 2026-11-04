@@ -19,7 +19,7 @@
 
 | ID | Name | Status | Primary outcome |
 |---|---|---|---|
-| M0 | Foundation and numerical validation | Not started | Runnable Android shell and tested camera |
+| M0 | Foundation and numerical validation | In progress | Runnable Android shell and tested camera |
 | M1 | Input and first drawing renderer | Not started | Natural single-stroke inking |
 | M2 | Document and spatial engine | Not started | Large editable vector document |
 | M3 | Rendering performance and scale | Not started | Stable viewport rendering under load |
@@ -50,6 +50,8 @@
 - M0.5 Camera unit tests.
 - M0.6 On-device gesture smoke test.
 - M0.7 Initial diagnostic log and documentation update.
+
+
 
 ### Exit gate
 
