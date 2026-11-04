@@ -104,8 +104,8 @@ No milestone exit gate has passed.
 
 ## 7. Immediate next actions
 
-1. User authorizes the GitHub integration if desired.
-2. Create the GitHub repository and add this documentation baseline.
+1. User authorizes the GitHub integration if desired : Done
+2. Create the GitHub repository and add this documentation baseline: Done
 3. Create the Android Studio project using a native Android template.
 4. Record exact Android Studio, Gradle, Kotlin, compile SDK, target SDK, and minimum SDK versions.
 5. Build and launch a minimal app on the Tab S10 FE+.
@@ -116,8 +116,8 @@ Do not begin stroke rendering, spatial chunking, off-heap storage, or advanced c
 
 ## 8. Current blockers and unknowns
 
-- GitHub integration authorization is pending.
-- Repository URL and default branch are not yet recorded.
+- GitHub integration authorization is pending : Done
+- Repository URL and default branch are not yet recorded : Done
 - Android project has not been created.
 - Graphics API/runtime details have not been queried from the device.
 - Exact SDK/build tool versions are not yet selected.
